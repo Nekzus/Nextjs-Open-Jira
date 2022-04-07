@@ -3,7 +3,7 @@ import { grey, red } from "@mui/material/colors";
 
 
 
-export const lightThem = createTheme({
+export const lightTheme = createTheme({
     palette: {
         mode: 'light',
         background: {

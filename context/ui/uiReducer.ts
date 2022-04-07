@@ -1,5 +1,6 @@
 import { UIState } from './';
 
+
 type UIActionType =
     | { type: 'UI - Open Sidebar' }
     | { type: 'UI - Close Sidebar' }
@@ -9,33 +10,41 @@ type UIActionType =
 
 
 export const uiReducer = (state: UIState, action: UIActionType): UIState => {
+
     switch (action.type) {
         case 'UI - Open Sidebar':
             return {
                 ...state,
-                sidemenuOpen: true
-            };
+                sidemenuOpen: true,
+            }
+
         case 'UI - Close Sidebar':
             return {
                 ...state,
-                sidemenuOpen: false
-            };
+                sidemenuOpen: false,
+            }
+
+
         case 'UI - Set isAddingEntry':
             return {
                 ...state,
                 isAddingEntry: action.payload
-            };
+            }
+
         case 'UI - Start Dragging':
             return {
                 ...state,
-                isDraggind: true
-            };
+                isDragging: true
+            }
+
         case 'UI - End Dragging':
             return {
                 ...state,
-                isDraggind: false
-            };
+                isDragging: false
+            }
+
         default:
             return state;
     }
-};
+
+}

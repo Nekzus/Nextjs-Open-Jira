@@ -1,15 +1,17 @@
-import { ChangeEvent, useContext, useState } from "react";
-import { EntriesContext } from "../../context/entries";
-import { Box, Button, TextField } from "@mui/material";
-import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { UIContext } from "../../context/ui";
+import { ChangeEvent, useState, useContext } from 'react';
+import { Box, Button, TextField } from '@mui/material';
 
+import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
+import AddIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+
+import { EntriesContext } from '../../context/entries';
+import { UIContext } from '../../context/ui';
 
 export const NewEntry = () => {
 
   const { addNewEntry } = useContext(EntriesContext);
-  const { isAddingEntry, setIsAddingentry } = useContext(UIContext)
+  const { isAddingEntry, setIsAddingEntry } = useContext(UIContext);
+
 
   const [inputValue, setInputValue] = useState('');
   const [touched, setTouched] = useState(false);
@@ -19,11 +21,14 @@ export const NewEntry = () => {
   }
 
   const onSave = () => {
+
     if (inputValue.length === 0) return;
+
     addNewEntry(inputValue);
-    setIsAddingentry(false);
+    setIsAddingEntry(false);
     setTouched(false);
     setInputValue('');
+
   }
 
 
@@ -37,10 +42,10 @@ export const NewEntry = () => {
               <TextField
                 fullWidth
                 sx={{ marginTop: 2, marginBottom: 1 }}
-                placeholder="Nueva entrada"
+                placeholder='Nueva entrada'
                 autoFocus
                 multiline
-                label="Nueva entrada"
+                label='Nueva entrada'
                 helperText={inputValue.length <= 0 && touched && 'Ingrese un valor'}
                 error={inputValue.length <= 0 && touched}
                 value={inputValue}
@@ -48,17 +53,18 @@ export const NewEntry = () => {
                 onBlur={() => setTouched(true)}
               />
 
-              <Box display="flex" justifyContent="space-between">
+              <Box display='flex' justifyContent='space-between'>
+
                 <Button
-                  variant="text"
-                  onClick={() => setIsAddingentry(false)}
+                  variant='text'
+                  onClick={() => setIsAddingEntry(false)}
                 >
                   Cancelar
                 </Button>
 
                 <Button
-                  variant="outlined"
-                  color="secondary"
+                  variant='outlined'
+                  color='secondary'
                   endIcon={<SaveOutlinedIcon />}
                   onClick={onSave}
                 >
@@ -67,18 +73,21 @@ export const NewEntry = () => {
               </Box>
             </>
           )
+
           : (
             <Button
-              startIcon={<AddCircleOutlineOutlinedIcon />}
+              startIcon={<AddIcon />}
               fullWidth
-              variant="outlined"
-              onClick={() => setIsAddingentry(true)}
+              variant='outlined'
+              onClick={() => setIsAddingEntry(true)}
             >
-              Agregar tarea
+              Agregar Tarea
             </Button>
           )
+
       }
 
+
     </Box>
-  );
+  )
 };
